@@ -10,7 +10,11 @@ fourcc = cv2.VideoWriter_fourcc(*'XVID')
 font = cv2.FONT_HERSHEY_COMPLEX
 ln = cv2.LINE_AA
 files = glob.glob(dirpath + '_sdsel/*.txt')
-bopen = False
+img = cv2.imread('Title.png')
+out = cv2.VideoWriter('{}/single_output.avi'.format(dirpath), fourcc, 25, img.shape[1::-1])
+for i in range(250):
+	out.write(img)
+
 for fname in files:
 	vid_result = [s.strip() for s in open(fname).readlines()]
 	vid_name = vid_result[0].split()[1]
@@ -50,9 +54,6 @@ for fname in files:
 	for ind in range(len(frame_pred)):
 		imgname = '/mnt/ssd/tmp/jolee/ch/jpegs_256/{}/frame{:06d}.jpg'.format(vid_name,ind+1)
 		img = cv2.imread(imgname)
-		if not bopen:
-			out = cv2.VideoWriter('{}/single_output.avi'.format(dirpath), fourcc, 25, img.shape[1::-1])
-			bopen = True
 
 		cv2.putText(img, 'GT: {}'.format(gt_label), (10,25), font, 0.5, (255,255,255), 1, ln)
 		if gt_label == frame_pred2[ind]:

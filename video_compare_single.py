@@ -10,7 +10,7 @@ fourcc = cv2.VideoWriter_fourcc(*'XVID')
 font = cv2.FONT_HERSHEY_COMPLEX
 ln = cv2.LINE_AA
 files = glob.glob(dirpath + '_sdsel/*.txt')
-img = cv2.imread('Title.png')
+img = cv2.imread('title.jpg')
 out = cv2.VideoWriter('{}/single_output.avi'.format(dirpath), fourcc, 25, img.shape[1::-1])
 for i in range(250):
 	out.write(img)

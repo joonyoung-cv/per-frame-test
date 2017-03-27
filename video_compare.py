@@ -45,7 +45,7 @@ for fname in files:
 		continue
 
 	fourcc = cv2.VideoWriter_fourcc(*'XVID')
-	font = cv2.FONT_HERSHEY_SIMPLEX
+	font = cv2.FONT_HERSHEY_COMPLEX
 	ln = cv2.LINE_AA
 	for ind in range(len(frame_pred)):
 		imgname = '/mnt/ssd/tmp/jolee/ch/jpegs_256/{}/frame{:06d}.jpg'.format(vid_name,ind+1)

@@ -34,6 +34,9 @@ for fname in files:
 	nFalseS = sum([gt_label != pred for pred in frame_pred2])
 	nFalseSDSEL = sum([gt_label != pred for pred in frame_pred])
 
+	if nFalseS < 2:
+		print('Too good result- False Num: {} among {}.'.format(nFalseSDSEL, len(frame_pred)))
+		continue
 	if nFalseSDSEL*2 > len(frame_pred):
 		print('Too bad result- False Num: {} among {}.'.format(nFalseSDSEL, len(frame_pred)))
 		continue
@@ -50,18 +53,18 @@ for fname in files:
 		if ind == 0:
 			out = cv2.VideoWriter('{}/{}_output.avi'.format(dirpath, vid_name), fourcc, 25, img.shape[1::-1])
 
-		cv2.putText(img, 'GT: {}'.format(gt_label), (10,20), font, 0.5, (255,255,255), 1, ln)
+		cv2.putText(img, 'GT: {}'.format(gt_label), (10,25), font, 0.5, (255,255,255), 1, ln)
 		if gt_label == frame_pred2[ind]:
 			color = (255,0,0)
 		else:
 			color = (0,0,255)
-		cv2.putText(img, ' S: {}'.format(frame_pred2[ind]), (10,40), font, 0.5, color, 1, ln)
+		cv2.putText(img, ' S: {}'.format(frame_pred2[ind]), (10,45), font, 0.5, color, 1, ln)
 
 		if gt_label == frame_pred[ind]:
 			color = (255,0,0)
 		else:
 			color = (0,0,255)
-		cv2.putText(img, ' M: {}'.format(frame_pred[ind]), (10,60), font, 0.5, color, 1, ln)
+		cv2.putText(img, ' M: {}'.format(frame_pred[ind]), (10,65), font, 0.5, color, 1, ln)
 
 		out.write(img)
 

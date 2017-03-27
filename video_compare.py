@@ -34,7 +34,7 @@ for fname in files:
 	nFalseS = sum([gt_label != pred for pred in frame_pred2])
 	nFalseSDSEL = sum([gt_label != pred for pred in frame_pred])
 
-	if nFalseS < 2:
+	if nFalseS < 5:
 		print('Too good result- False Num: {} among {}.'.format(nFalseSDSEL, len(frame_pred)))
 		continue
 	if nFalseSDSEL*2 > len(frame_pred):

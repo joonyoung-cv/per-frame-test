@@ -14,7 +14,7 @@ for fname in files:
 	gt_label = vid_result[1].split()[1]
 	frame_pred = vid_result[2:]
 
-	fname2 = fname.replace('_sdsel/','_s/')
+	fname2 = fname.replace('_sdsel','_s')
 	vid_result2 = [s.strip() for s in open(fname2).readlines()]
 	vid_name2 = vid_result2[0].split()[1]
 	gt_label2 = vid_result2[1].split()[1]
